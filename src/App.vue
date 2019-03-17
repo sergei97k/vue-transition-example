@@ -1,66 +1,74 @@
 <template>
   <el-container>
-      <el-header>
-          <el-row type="flex" justify="center">
-              <h1>Vue Transition Example</h1>
-          </el-row>
-      </el-header>
-      <el-main>
-          <el-row>
-              <el-col :span="24">
-                  <el-row type="flex" justify="center">
-                      <el-button-group>
-                          <el-button
-                             v-for="tab in tabs"
-                             :plain="activeTab !== tab.name"
-                             type="primary"
-                             :key="tab.name"
-                             @click="onClick(tab.name)"
-                          >
-                              {{ tab.label }}
-                          </el-button>
-                      </el-button-group>
-                  </el-row>
-
-                  <transition
-                     name="fade"
-                     mode="out-in"
-                     @after-leave="afterLeave"
-                  >
-                      <Table
-                              v-if="dataLoad && comments.length"
-                              :data="comments"
-                              :loading="loading"
-                      />
-                  </transition>
-
-                  <transition-group
-                          name="fade-loader"
-                          mode="out-in"
-                          @after-leave="afterLeave"
-                  >
-                      <el-card
-                              key="loading"
-                              v-if="loading"
-                              v-loading="loading"
-                              class="table-loading"
-                      />
-
-                      <el-card
-                              key="dataEmpty"
-                              v-if="dataEmpty"
-                              class="table-loading"
-                      >
-                          <el-row type="flex" justify="center" class="center">
-                              <h2>No data</h2>
-                          </el-row>
-                      </el-card>
-                  </transition-group>
-              </el-col>
+    <el-header>
+      <el-row
+        type="flex"
+        justify="center"
+      >
+        <h1>Vue Transition Example</h1>
+      </el-row>
+    </el-header>
+    <el-main>
+      <el-row>
+        <el-col :span="24">
+          <el-row
+            type="flex"
+            justify="center"
+          >
+            <el-button-group>
+              <el-button
+                v-for="tab in tabs"
+                :key="tab.name"
+                :plain="activeTab !== tab.name"
+                type="primary"
+                @click="onClick(tab.name)"
+              >
+                {{ tab.label }}
+              </el-button>
+            </el-button-group>
           </el-row>
 
+          <transition
+            name="fade"
+            mode="out-in"
+            @after-leave="afterLeave"
+          >
+            <Table
+              v-if="dataLoad && comments.length"
+              :data="comments"
+              :loading="loading"
+            />
+          </transition>
 
-      </el-main>
+          <transition-group
+            name="fade-loader"
+            mode="out-in"
+            @after-leave="afterLeave"
+          >
+            <el-card
+              v-if="loading"
+              key="loading"
+              v-loading="loading"
+              class="table-loading"
+            />
+
+            <el-card
+              v-if="dataEmpty"
+              key="dataEmpty"
+              class="table-loading"
+            >
+              <el-row
+                type="flex"
+                justify="center"
+                class="center"
+              >
+                <h2>No data</h2>
+              </el-row>
+            </el-card>
+          </transition-group>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 
@@ -84,7 +92,7 @@ const TABS = [
 ];
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Table
   },
@@ -139,10 +147,9 @@ export default {
       if (this.dataLoad && !commentsLength) {
         this.dataEmpty = true;
       }
-
     }
   }
-}
+};
 </script>
 
 <style scoped>

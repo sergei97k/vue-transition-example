@@ -1,31 +1,32 @@
 <template>
-    <el-card class="box-card">
-        <el-table
-            :data="data"
-            stripe>
-            <el-table-column
-               prop="name"
-               label="Name"
-               width="180">
-            </el-table-column>
-            <el-table-column
-               prop="email"
-               label="Email"
-               width="180">
-            </el-table-column>
-            <el-table-column
-               prop="body"
-               label="Comment">
-            </el-table-column>
+  <el-card class="box-card">
+    <el-table
+      :data="data"
+      stripe
+    >
+      <el-table-column
+        prop="name"
+        label="Name"
+        width="180"
+      />
+      <el-table-column
+        prop="email"
+        label="Email"
+        width="180"
+      />
+      <el-table-column
+        prop="body"
+        label="Comment"
+      />
 
-            <div slot="empty"></div>
-        </el-table>
-    </el-card>
+      <div slot="empty" />
+    </el-table>
+  </el-card>
 </template>
 
 <script>
 export default {
-  name: "Table",
+  name: 'Table',
   props: {
     data: {
       type: Array,
@@ -36,7 +37,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 
 <style scoped>
