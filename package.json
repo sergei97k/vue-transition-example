@@ -19,6 +19,8 @@
     "@vue/cli-service": "^3.5.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
   },
@@ -28,10 +30,34 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "airbnb-base",
+      "plugin:vue/recommended"
     ],
-    "rules": {},
+    "globals": {
+      "window": true,
+      "document": true
+    },
+    "rules": {
+      "no-plusplus": 0,
+      "linebreak-style": 0,
+      "space-after-function-name": "always",
+      "no-console": "off",
+      "global-require": 0,
+      "func-names": 0,
+      "class-methods-use-this": 0,
+      "comma-dangle": [
+        "error", "never"
+      ],
+      "consistent-return": 0,
+      "max-len": [1, { "code": 120 }],
+      "no-param-reassign": 0,
+      "no-unused-expressions": 0,
+      "no-shadow": "off",
+      "object-curly-newline": 0,
+      "prefer-destructuring": 0,
+      "space-before-function-paren": 1,
+      "camelcase": 0
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
