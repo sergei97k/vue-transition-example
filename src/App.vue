@@ -199,7 +199,7 @@ export default {
         transition: opacity 0.3s;
     }
     .fade-loader-leave-active {
-        transition: opacity 0.3s;
+        transition: opacity 0s;
         opacity: 0;
     }
 </style>
