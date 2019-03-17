@@ -1,9 +1,7 @@
 <template>
     <el-card class="box-card">
         <el-table
-            :data="comments"
-            height="100vh"
-            v-loading="loading"
+            :data="data"
             stripe>
             <el-table-column
                prop="name"
@@ -29,7 +27,7 @@
 export default {
   name: "Table",
   props: {
-    comments: {
+    data: {
       type: Array,
       required: true
     },
@@ -42,5 +40,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .el-table {
+        height: 65vh;
+    }
 </style>
