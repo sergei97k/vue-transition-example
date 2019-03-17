@@ -36,7 +36,9 @@
 
                   <transition-group
                           name="fade-loader"
-                          mode="out-in">
+                          mode="out-in"
+                          @after-leave="afterLeave"
+                  >
                       <el-card
                               key="loading"
                               v-if="loading"
@@ -174,6 +176,7 @@ export default {
 
     .center {
         align-items: center;
+        margin-top: -20px;
     }
 
     /* TRANSITION */
