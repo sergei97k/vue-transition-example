@@ -8,9 +8,20 @@
       <el-main>
           <el-row>
               <el-col :span="24">
-                  <div class="grid-content bg-purple-dark">
-                      <Table :comments="comments" />
-                  </div>
+                  <el-tabs v-model="activeTab" @tab-click="onTabChange">
+                      <el-tab-pane
+                        v-for="tab in tabs"
+                        :key="tab.name"
+                        :label="tab.label"
+                        :name="tab.name"
+                      >
+                          <Table
+                            v-if="tab.name === activeTab"
+                            :comments="comments"
+                            :loading="loading"
+                          />
+                      </el-tab-pane>
+                  </el-tabs>
               </el-col>
           </el-row>
       </el-main>
@@ -19,7 +30,22 @@
 
 <script>
 import axios from './utils/axios';
-import { Table } from './components'
+import { Table } from './components';
+
+const TABS = [
+  {
+    name: 'first',
+    label: 'First table'
+  },
+  {
+    name: 'second',
+    label: 'Second table'
+  },
+  {
+    name: 'third',
+    label: 'Third table'
+  }
+];
 
 export default {
   name: 'app',
@@ -27,13 +53,30 @@ export default {
     Table
   },
   data: () => ({
-    comments: []
+    activeTab: TABS[0].name,
+    tabs: TABS,
+    comments: [],
+    loading: true
   }),
-  async mounted() {
-    try {
-      this.comments = await axios.get('/comments');
-    } catch (e) {
-      console.error(e);
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    async getData() {
+      this.loading = true;
+
+      try {
+        await setTimeout(async () => {
+          this.comments = await axios.get('/comments');
+          this.loading = false;
+        }, 2000);
+      } catch (e) {
+        console.error(e);
+        this.loading = false;
+      }
+    },
+    onTabChange() {
+      this.getData();
     }
   }
 }
